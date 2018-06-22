@@ -13,7 +13,9 @@ enum Camera_Movement
 	FORWARD,
 	BACKWARD,
 	LEFT,
-	RIGHT
+	RIGHT,
+	UP,
+	DOWN
 };
 
 const GLfloat YAW = -90.0F;
@@ -67,6 +69,14 @@ public:
 		{
 			this->position += this->right * velocity;
 		}
+		if(UP == direction)
+		{
+			this->position += this->up * velocity;
+		}
+		if (DOWN == direction)
+		{
+			this->position -= this->up * velocity;
+		}
 	}
 
 	void processMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true) 
@@ -113,6 +123,11 @@ public:
 	glm::vec3 getPosition()
 	{
 		return this->position;
+	}
+
+	void setMovementSpeed(GLfloat newSpeed)
+	{
+		this->movementSpeed = newSpeed;
 	}
 
 private:
